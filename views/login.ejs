@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Вход — Медиа архив</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-page">
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1>Вход</h1>
+      <form id="login-form">
+        <input type="text" name="login" placeholder="Логин" required>
+        <input type="password" name="password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+      </form>
+      <p id="message"></p>
+      <a href="/register">Нет аккаунта? Зарегистрироваться</a>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

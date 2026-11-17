@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Админ-панель — Медиа архив</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/">Медиа архив</a></h1>
+    <nav>
+      <span>Привет, <b><%= currentUser.login %></b>!</span>
+      <a href="/my">Мои загрузки</a>
+      <a href="/upload" class="btn-upload">⬆ Загрузить</a>
+      <a href="#" id="logout-link">Выйти</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>🔧 Админ-панель</h2>
+
+    <!-- Статистика -->
+    <div id="stats" class="stats-grid">
+      <div class="stat-card"><div class="stat-value" id="stat-users">—</div><div class="stat-label">Пользователей</div></div>
+      <div class="stat-card"><div class="stat-value" id="stat-active">—</div><div class="stat-label">Активных</div></div>
+      <div class="stat-card"><div class="stat-value" id="stat-media">—</div><div class="stat-label">Медиа всего</div></div>
+      <div class="stat-card"><div class="stat-value" id="stat-public">—</div><div class="stat-label">Публичных</div></div>
+      <div class="stat-card"><div class="stat-value" id="stat-hidden">—</div><div class="stat-label">Скрытых</div></div>
+    </div>
+
+    <!-- Табы -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="media">Модерация медиа</button>
+      <button class="tab-btn" data-tab="users">Пользователи</button>
+      <button class="tab-btn" data-tab="logs">Журнал</button>
+    </div>
+
+    <!-- Модерация медиа -->
+    <section id="tab-media" class="tab-panel active">
+      <div class="filters">
+        <input type="text" id="media-q" placeholder="Поиск по названию...">
+        <button id="media-search-btn">Найти</button>
+        <button id="media-reset-btn">Сбросить</button>
+      </div>
+      <div id="media-list" class="media-list">
+        <p>Загрузка...</p>
+      </div>
+    </section>
+
+    <!-- Пользователи -->
+    <section id="tab-users" class="tab-panel">
+      <table class="admin-table" id="users-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Логин</th>
+            <th>Email</th>
+            <th>Роль</th>
+            <th>Статус</th>
+            <th>Зарегистрирован</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="7">Загрузка...</td></tr></tbody>
+      </table>
+    </section>
+
+    <!-- Журнал -->
+    <section id="tab-logs" class="tab-panel">
+      <table class="admin-table" id="logs-table">
+        <thead>
+          <tr>
+            <th>Дата</th>
+            <th>Админ</th>
+            <th>Действие</th>
+            <th>Сущность</th>
+            <th>ID</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="5">Загрузка...</td></tr></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/js/admin.js"></script>
+  <script>
+    $(function() {
+      $('#logout-link').on('click', function(e) {
+        e.preventDefault();
+        $.post('/api/auth/logout', function() { window.location.href = '/'; });
+      });
+    });
+  </script>
+  <script src="/js/utils.js"></script>
+</body>
+</html>

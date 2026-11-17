@@ -1,0 +1,24 @@
+### Регистрация
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "login": "admin",
+  "email": "admin@example.com",
+  "password": "secret123"
+}
+
+### Вход
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "login": "admin",
+  "password": "secret123"
+}
+
+### Текущий пользователь
+GET http://localhost:3000/api/auth/me
+
+### Выход
+POST http://localhost:3000/api/auth/logout

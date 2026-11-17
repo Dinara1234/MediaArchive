@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Мои загрузки — Медиа архив</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/">Медиа архив</a></h1>
+    <nav>
+      <span>Привет, <b><%= currentUser.login %></b>!</span>
+      <a href="/upload" class="btn-upload">⬆ Загрузить</a>
+      <% if (currentUser.role === 'admin') { %>
+        <a href="/admin">Админ-панель</a>
+      <% } %>
+      <a href="#" id="logout-link">Выйти</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Мои загрузки</h2>
+    <p class="hint">Здесь только ваши файлы — включая приватные. Публичные видны в <a href="/">общей ленте</a>.</p>
+
+    <div id="my-grid" class="media-grid">
+      <p id="loading">Загрузка...</p>
+    </div>
+    <p id="empty" style="display:none; color:#888;">
+      У вас ещё нет загруженных файлов. <a href="/upload">Загрузить первый</a>.
+    </p>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/js/my.js"></script>
+  <script>
+    $(function() {
+      $('#logout-link').on('click', function(e) {
+        e.preventDefault();
+        $.post('/api/auth/logout', function() { window.location.href = '/'; });
+      });
+    });
+  </script>
+  <script src="/js/utils.js"></script>
+</body>
+</html>
